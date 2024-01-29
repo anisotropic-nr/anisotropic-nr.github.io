@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Visual Comparisons</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/viewer/css/app.css">
+    <link rel="stylesheet" href="/viewer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/viewer/css/fontawesome.all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZERS5BVPS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8ZERS5BVPS');
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script src="/viewer/js/fontawesome.all.min.js"></script>
+
+    <script src="/viewer/js/image_switch.js"></script>
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3 style="text-align: center;">
+                The performance of the baseline models after introducing our method is significantly improved on <b
+                    id="datasetname" data-value="n360">MipNeRF-360</b> dataset.
+            </h3><br>
+
+            <div class="text-center">
+                </ul>
+                <ul class="nav nav-pills center-pills">
+                    <li class="method-pill active" data-value="nerfacc"
+                        onclick="selectCompVideo(this, activeScenePill)">
+                        <a>Nerfacc</a>
+                    </li>
+                    <li class="method-pill" data-value="zip_s" onclick="selectCompVideo(this, activeScenePill)">
+                        <a>ZipNeRF-Single</a>
+                    </li>
+                    <li class="method-pill" data-value="zip_m" onclick="selectCompVideo(this, activeScenePill)">
+                        <a>ZipNeRF-Multi</a>
+                    </li>
+                </ul>
+            </div>
+
+            <script>
+                var activeMethodPill = document.querySelector('.method-pill.active');
+                var activeScenePill = document.querySelector('.scene-pill.active');
+                var activeModePill = document.querySelector('.mode-pill.active');
+            </script>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                    </h3>
+                    <div class="row comp-margin">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="b-dics" style="width: 100%">
+                                <img src="/assets/images/comp_image/nerfacc/blender/nerfacc_chair.png" alt="Baseline" />
+                                <img src="/assets/images/comp_image/nerfacc/blender/ours_chair.png" alt="Ours" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="color: black;" id="mode-pills">
+                <div class="btn-group btn-group-sm">
+                    <span class="btn btn-primary mode-pill active" data-value="rgb"
+                        onclick="selectCompImage(activeMethodPill, activeScenePill, this)">
+                        RGB
+                    </span>
+                    <span class="btn btn-primary mode-pill" data-value="depth"
+                        onclick="selectCompImage(activeMethodPill, activeScenePill, this)">
+                        Depth
+                    </span>
+                    <span class="btn btn-primary mode-pill" data-value="color_depth"
+                        onclick="selectCompImage(activeMethodPill, activeScenePill, this)">
+                        Color Depth
+                    </span>
+                </div>
+            </div>
+            <p class="text-justify">
+                Baseline model(left) vs baseline + ours. Scene trained on <span id="sceneVideoName">chair</span>
+                scene.
+            </p>
+
+            <br>
+            <!-- <script>
+                video0 = document.getElementById("xyalias");
+                video0.addEventListener('loadedmetadata', function () {
+                    if (activeVidID == 0 && select) {
+                        video0.play();
+                        // print video size
+                        console.log(video0.videoWidth, video0.videoHeight);
+                        video0.hidden = false;
+                        video1.hidden = true;
+                    }
+                });
+            </script> -->
+
+            <div class="pill-row scene-pills active" id="scene-pills">
+                <span class="pill scene-pill" data-value="ball" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/ball.png"
+                        alt="shinyblender/ball" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="car" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/car.png"
+                        alt="shinyblender/car" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="coffee" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/coffee.png"
+                        alt="shinyblender/coffee" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="teapot" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/teapot.png"
+                        alt="shinyblender/teapot" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="helmet" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/helmet.png"
+                        alt="shinyblender/helmet" width="64">
+                </span>
+                <span class="pill scene-pill" data-value="toaster" onclick="selectCompVideo(activeMethodPill, this)">
+                    <img class="thumbnail-img" src="/assets/images/dataset_image/shiny_blender/toaster.png"
+                        alt="shinyblender/toaster" width="64">
+                </span>
+            </div>
+
+            <script>
+                activeMethodPill = document.querySelector('.method-pill.active-pill');
+                activeScenePill = document.querySelector('.scene-pill.active-pill');
+                activeModePill = document.querySelector('.mode-pill.active-pill');
+            </script>
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- <div style="text-align: center;">Visual Comparisons</div> -->
+
+</body>
+
+</html>

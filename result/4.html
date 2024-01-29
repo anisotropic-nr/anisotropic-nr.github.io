@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Additional Video Results </title>
+  <link rel="stylesheet" href="../assets/scripts/bulma.min.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤔</text></svg>">
+  <style>
+    .black-frame {
+      height: calc(100% - 0.3rem);
+      background: #171617;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card .media-content .title,
+    .card .media-content .subtitle {
+      color: #4a4a4a;
+    }
+
+    .card-footer {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <p class="navbar-item">
+        <a href="../" style="color:#4a4a4a"><b>Anisotropic</b></a>
+      </p>
+      <p class="navbar-item">
+        <a href="../" style="color:#4a4a4a">Go Back</a>
+      </p>
+    </div>
+  </nav>
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title" style="text-align: center;">
+          Additional results
+        </h1>
+        <!--<p class="subtitle"></p>-->
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <video controls autoplay loop>
+              <source src="/assets/video/shinyblender/nerfacc/rgb/nerfacc_ball_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="column">`
+            <video controls autoplay loop>
+              <source src="/assets/video/shinyblender/nerfacc/rgb/nerfacc_helmet_video.mp4" type=" video/mp4" />
+            </video>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <video controls autoplay loop>
+              <source src="/assets/video/shinyblender/kplanes/rgb/kplanes_teapot_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="column">
+            <video controls autoplay loop>
+              <source src="/assets/video/shinyblender/kplanes/rgb/kplanes_toaster_video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <nav class="pagination" role="navigation" aria-label="pagination">
+          <a class="pagination-previous" href="3.html">Previous</a>
+          <a class="pagination-next" disabled>Next page</a>
+          <ul class="pagination-list">
+            <li>
+              <a class="pagination-link" href="1.html">1</a>
+            </li>
+            <li>
+              <a class="pagination-link" href="2.html">2</a>
+            </li>
+            <li>
+              <a class="pagination-link" href="3.html">3</a>
+            </li>
+            <li>
+              <a class="pagination-link is-current">4</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBLPBBKRZ9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YBLPBBKRZ9');
+  </script>
+</body>
+
+</html>

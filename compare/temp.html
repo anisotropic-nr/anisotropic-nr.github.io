@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Visual Comparisons</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <!-- <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤔</text></svg>"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="/viewer/css/app.css">
+    <link rel="stylesheet" href="/viewer/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/viewer/css/fontawesome.all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script> -->
+
+    <script src="/viewer/js/fontawesome.all.min.js"></script>
+    <script src="/viewer/js/app.js"></script>
+    <script src="/viewer/js/video_comparison.js"></script>
+    <script src="/assets/scripts/compare_template.js"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', domReady);
+        function domReady() {
+            for (const e of document.querySelectorAll(".b-dics")) {
+                new Dics({
+                    container: e,
+                    textPosition: "top"
+                });
+            }
+        }
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8ZERS5BVPS');
+    </script>
+
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h3 style="text-align: center;">
+                The performance of the baseline models after introducing our method is significantly improved on <b
+                    id="datasetname" data-value="blender">blender</b> dataset.
+            </h3><br>
+
+            <div class="text-center">
+                </ul>
+                <ul class="nav nav-pills center-pills">
+                    <li class="method-pill active" data-value="nerfacc"
+                        onclick="selectCompVideo(this, activeScenePill)">
+                        <a>Nerfacc</a>
+                    </li>
+                    <li class="method-pill" data-value="kplanes" onclick="selectCompVideo(this, activeScenePill)">
+                        <a>K-Planes</a>
+                    </li>
+                    <li class="method-pill" data-value="trimip" onclick="selectCompVideo(this, activeScenePill)">
+                        <a>Tri-mip</a>
+                    </li>
+                </ul>
+            </div>
+
+            <script>
+                activeMethodPill = document.querySelector('.method-pill.active');
+                activeScenePill = document.querySelector('.scene-pill.active');
+                activeModePill = document.querySelector('.mode-pill.active');
+            </script>
+
+            <div class="text-center">
+                <div class="video-container">
+                    <video class="video" width=100% id="xyalias" loop playsinline autoplay muted
+                        src="/assets/video/blender/nerfacc/rgb/nerfacc_materials_video.mp4"
+                        onplay="resizeAndPlay(this)"></video>
+                    <canvas height=0 class="videoMerge" id="xyaliasMerge"></canvas>
+                </div>
+                <div class="text-center" style="color: black;" id="mode-pills">
+                    <div class="btn-group btn-group-sm">
+                        <span class="btn btn-primary mode-pill active" data-value="rgb"
+                            onclick="selectCompVideo(activeMethodPill, activeScenePill, this)">
+                            RGB
+                        </span>
+                        <span class="btn btn-primary mode-pill" data-value="depth"
+                            onclick="selectCompVideo(activeMethodPill, activeScenePill, this)">
+                            Depth
+                        </span>
+                    </div>
+                </div>
+                <h4 style="text-align: center; margin: 30px 0;">
+                    Baseline model(left) vs baseline + ours. Scene trained on <span id="sceneVideoName">chair</span>
+                    views.
+                </h4>
+                <!-- <script>
+                    video0 = document.getElementById("xyalias");
+                    video0.addEventListener('loadedmetadata', function () {
+                        if (activeVidID == 0 && select) {
+                            video0.play();
+                            // print video size
+                            video0.hidden = false;
+                            video1.hidden = true;
+                        }
+                    });
+
+                </script> -->
+
+                <div class="pill-row scene-pills " id="scene-pills">
+                    <span class="pill scene-pill" data-value="chair" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/chair.png"
+                            alt="blender/chair" width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="lego" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/lego.png"
+                            alt="blender/lego" width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="drums" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/drums.png"
+                            alt="blender/drums" width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="hotdog" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/hotdog.png"
+                            alt="blender/hotdog" width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="ficus" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/ficus.png"
+                            alt="blender/ficus" width="64">
+                    </span>
+                    <span class="pill scene-pill active" data-value="materials"
+                        onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/materials.png"
+                            alt="blender/materials" width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="mic" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/mic.png" alt="blender/mic"
+                            width="64">
+                    </span>
+                    <span class="pill scene-pill" data-value="ship" onclick="selectCompVideo(activeMethodPill, this)">
+                        <img class="thumbnail-img" src="/assets/images/dataset_image/blender/ship.png"
+                            alt="blender/ship" width="64">
+                    </span>
+                </div>
+
+                <script>
+                    activeMethodPill = document.querySelector('.method-pill.active-pill');
+                    activeScenePill = document.querySelector('.scene-pill.active-pill');
+                    activeModePill = document.querySelector('.mode-pill.active-pill');
+                </script>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- <div style="text-align: center;">Visual Comparisons</div> -->
+
+</body>
+
+</html>
